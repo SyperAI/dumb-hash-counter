@@ -26,4 +26,4 @@ echo "Starting..."
 
 source ./venv/bin/activate
 
-gunicorn -k uvicorn.workers.UvicornWorker -b "$HOST":"$PORT" -w "$WORKERS" app:app --access-logfile - --error-logfile -
+gunicorn -k uvicorn.workers.UvicornWorker -b "$HOST":"$PORT" -w "$WORKERS" app:app --access-logfile - --error-logfile - --max-requests 100 --max-requests-jitter 10
