@@ -26,4 +26,4 @@ echo "Starting..."
 
 source ./venv/bin/activate
 
-uvicorn --host "$HOST" --port "$PORT" --workers "$WORKERS" app:app --log-config log_config.json
+gunicorn -k uvicorn.workers.UvicornWorker -b "$HOST":"$PORT" -w "$WORKERS" app:app --access-logfile - --error-logfile -
